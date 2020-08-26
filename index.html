@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>F&S Virtual Fireworks</title>
+    <link rel="icon" href="https://b6z8k9g7.stackpathcdn.com/assets/favicon.ico" type="image/x-icon" crossorigin="anonymous" />
+    <link rel="icon" href="https://b6z8k9g7.stackpathcdn.com/assets/apple-touch-icon.png" type="image/png" crossorigin="anonymous">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <script src="https://cdn.rawgit.com/gladeye/aframe-preloader-component/1.0.2/dist/aframe-preloader-component.min.js"></script>
+</head>
+
+<body>
+    <a-scene loading-screen="dotsColor: white; backgroundColor: black" preloader>
+        <a-assets> <img id="logo" src="https://b6z8k9g7.stackpathcdn.com/assets/MultiColor_Logo.png" crossorigin="anonymous" /> <img id="ground" src="https://b6z8k9g7.stackpathcdn.com/assets/Grass.jpg" crossorigin="anonymous" /><video id="fireworks" webkit-playsinline
+                playsinline autoplay loop="true"> <source src="https://b6z8k9g7.stackpathcdn.com/assets/HighRes_Sky.mp4#t=0.1" type="video/mp4"/> <source src="https://b6z8k9g7.stackpathcdn.com/assets/iOS_Fallback_Sky.m4v#t=0.1" type="video/mp4"/> <source src="https://b6z8k9g7.stackpathcdn.com/assets/LowRes_Sky.mp4#t=0.1" type="video/mp4"/> </video>            </a-assets>
+        <a-gui-flex-container id="gui-container" panel-color="#6D00A0" flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" opacity="0" width="2.5" height="1" position="0 1 -6" rotation="0 0 0">
+            <a-gui-button width="2.5" height="0.50" onclick="testButtonAction" key-code="32" value="Tap to Start Show" font-family="Arial" margin="0 0 0.05 0"> </a-gui-button>
+        </a-gui-flex-container>
+        <a-entity position="-3 0 -6" rotation="5 0 0">
+            <a-entity geometry="primitive: plane; width: 100; height: 100;" rotation="-90 0 0" material="src: #ground; repeat: 30 30; transparent: true;metalness:0.6; roughness: 0.4;"></a-entity>
+            <a-image geometry="primitive: plane; width: 8; height: 3;" position="3 2 -1" rotation="0 0 0" material="transparent: true; src: #logo;"></a-entity>
+        <a-entity light="color: white; type: ambient;"></a-entity>
+        <a-sky src="#fireworks" rotation="0 -90 -80"></a-sky>
+    </a-scene>
+    <script>
+        window.addEventListener('click', function() {
+            var v = document.querySelector('#fireworks');
+            v.play();
+            console.log("Show has started...");
+        });
+    </script>
+</body>
+
+</html>
